@@ -52,10 +52,7 @@ The King County data came with a dictionary of features:
 
 ### Distribution of price data across King County
 
-<iframe
-  src="/images/price_colormap.html"
-  style="width:100%; height:300px;"
-></iframe>
+![price distribution](/images/home-price-distribution.png)
 
 ### How data is correlated with the target (price)
 
@@ -90,6 +87,12 @@ While the data came with 20 features, the analysis focused on **changeable** fea
 * city (while not alterable by renovations, we kept city data in the dataset to loop over different regions when doing our analysis)
 
 ## Linear Regression
+
+### Data preperation
+
+* All numeric variables were standardized by subtracting the feature mean and dividing by the standard deviation.
+* All numeric variables were normalized by taking their log
+* All categorical variables were converted using one hot encoding
 
 ### Model Performance
 
