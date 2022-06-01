@@ -20,9 +20,9 @@ Data for this analysis came from two sources:
 * [King County House Sales dataset from Kaggle](https://www.kaggle.com/datasets/harlfoxem/housesalesprediction)
 * [Zipcode-to-city data from ciclt.net](https://www.ciclt.net/sn/clt/capitolimpact/gw_ziplist.aspx?FIPS=53033) 
 
-The data containes records on 21,420 homes in King County, Washington. The zipcode data maps zip codes to the municipality.
+The data contains records on 21,420 homes in King County, Washington. The zipcode data maps zip codes to the municipality.
 
-The King County data came wiht a dictionary of features:
+The King County data came with a dictionary of features:
 
 
 | **Column**        | Description                                                                      | Unique | Dtype   |
@@ -50,6 +50,13 @@ The King County data came wiht a dictionary of features:
 | **sqft_lot15**    | The square footage of the land lots of the nearest 15 neighbors                  | 8682   | int64   |
 
 
+### Distribution of price data across King County
+
+<iframe
+  src="/images/price_colormap.html"
+  style="width:100%; height:300px;"
+></iframe>
+
 ### How data is correlated with the target (price)
 
 ![correlation](/images/correlation-graph.png)
@@ -69,7 +76,7 @@ This project revolved around using linear regression to study the effects of dif
 
 First, we cleaned the data removing duplicates and missing values. I then merged the Zipcode-to-city dataset with the King County home dataset.
 
-While the data came with 20 features, the analysis focused on **changable** features. Because the business problem at hand revolves around what types of renovations (if any) ACME should carry out, it semeed relevant to focus on features that can be affected by renovations. For those reasons these features were studied:
+While the data came with 20 features, the analysis focused on **changeable** features. Because the business problem at hand revolves around what types of renovations (if any) ACME should carry out, it seemed relevant to focus on features that can be affected by renovations. For those reasons these features were studied:
 
 * price (our target dependent variable)
 * bedrooms
@@ -84,7 +91,7 @@ While the data came with 20 features, the analysis focused on **changable** feat
 
 ## Linear Regression
 
-### Model Performence
+### Model Performance
 
 This analysis iterated through 3 models.
 
@@ -178,27 +185,29 @@ The p-value is well below 0.05 for each region, so we can reject the null hypoth
 
 After studying the above coefficients from our linear regression, we were able to draw some conclusions.
 
-TBD
+* Increasing the square feet of the living area by one standard deviation will increase the home price by 1.8 standard deviations
+* Making the home grade 'excellent' or better is expected to increase the home price by 2.9 standard deviations
+* Across all regions, the average y-intercept value is $262,278.21. In other words, that is the base home value when all other factors are set to 0.
+
+![average-price](/images/average-home-price-renovated-not-renovated.png)
+
+![Effect of home grade on price](/images/grade-price-effect.png)
+
+![Effect of sqr_foot_living on price](/images/sqft-foot-living-area-price-line.png)
 
 ## Conclusions
 
-This analysis leads to three recommendations for launching Microsoft's new movie studio:
+This analysis has lead to three recommendations for ACME as they look at investing in real estate in King County:
 
-* Spend at least $35M per film. It's clear from the data that both profit and worldwide revenue have a strong positive correlation with a movie's production budget. The median production budget of a blockbuster was $35M, while the median production budget of a movie considered to be a "Flop" was just $20M.
-* Work with proven directors like Steven Spielberg. Mr. Spielberg along with directors like Clint Eastwood and Jon Chou stand head and shoulders above the rest in terms of consistently producing blockbusters. Their names carry weight and are clearly a draw for audiences.
-* Focus on Animated movies. These films produced the highest returns at the box office. If the brand wants to focus on live action films, then Adventure, Sci-Fi and Action movies are the next best thing.
-
-### Next Steps
-
-Further analysis could yield additional insights for Microsoft:
-* Increasing the sample size. Scraping additional data to produce a larger sample can help us dive deeper into differences between genres.
-* Look into year-to-year changes in performance. This project analyzed the bucket of movies between 2010 and 2019. A time analysis could help Microsoft get ahead of changing trends if we were to spot shifting audience preferences.
-* Predict flops. Further modeling could be done to detect features commonly present in flops. This could help Microsoft decide which projects to greenlight and which ones to shut down before production begins.
-
+* It’s recommended that ACME renovate the homes it buys in King County
+* Focus on expanding the square footage of the living area, improving the build grade to ‘Excellent’ with King County assessors
+* Keep renovation costs:
+  * below \$1,130,833 for rising building grade to 'Excellent'
+  * below \$664,751 for expanding sq. ft by 915
 
 ## For more information
 
-See the full analysis in the [Jupyter Notebook](https://github.com/robertharrow/flatiron-phase-1-project/blob/main/microsoft_movie_studio_analysis.ipynb) or review [this presentation](https://github.com/robertharrow/flatiron-phase-1-project/blob/main/presentation.pdf).
+See the full analysis in the [Jupyter Notebook](https://github.com/robertharrow/flatiron-phase-2-project/blob/main/data-analysis.ipynb) or review [this presentation](https://github.com/robertharrow/flatiron-phase-2-project/blob/main/presentation.pdf).
 
 For additional info, contact Robert Harrow at rharrow928@gmail.com.
 
